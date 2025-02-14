@@ -132,26 +132,44 @@ class MotionPlanningNode(Node):
 def main(args=None):
     rclpy.init(args=args)
     node = MotionPlanningNode()
+    
+    def signal_handler(sig, frame):
+        print("\n\nEmergency stop triggered! Shutting down...\n\n")
+        if rclpy.ok():
+            # 먼저 timer를 취소하여 더 이상의 timer_callback 실행을 방지
+            node.timer.cancel()
+            
+            # 정지 명령 생성 및 발행
+            stop_command = MotionCommand()
+            stop_command.steering = 0
+            stop_command.left_speed = 0
+            stop_command.right_speed = 0
+            node.publisher.publish(stop_command)
+            
+            # 로그 출력
+            node.get_logger().info("Emergency Stop: Motors stopped")
+            
+            # 정지 명령이 전송되었는지 확인하기 위한 추가 로그
+            node.get_logger().info(f"steering: {stop_command.steering}, "
+                                 f"left_speed: {stop_command.left_speed}, "
+                                 f"right_speed: {stop_command.right_speed}")
+            
+            # 메시지가 전송될 시간을 주기 위해 잠시 대기
+            rclpy.spin_once(node, timeout_sec=0.1)
+        
+        rclpy.shutdown()
+        
+    import signal
+    signal.signal(signal.SIGINT, signal_handler)
+    
     try:
         rclpy.spin(node)
-    except KeyboardInterrupt:
-        print("\n\nshutdown\n\n")
-        # 정지 명령 생성
-        stop_command = MotionCommand()
-        stop_command.steering = 0
-        stop_command.left_speed = 0
-        stop_command.right_speed = 0
-        # 정지 명령 발행
-        node.publisher.publish(stop_command)
-        # 로그 출력
-        node.get_logger().info("Emergency Stop: Ctrl+C pressed")
     finally:
         node.destroy_node()
-        rclpy.shutdown()
 
 if __name__ == '__main__':
     main()
-
+    
 def convert_steeringangle2command(max_target_angle, target_angle):
    
     f = lambda x : 7/(max_target_angle**3)*(x**3) #64000
