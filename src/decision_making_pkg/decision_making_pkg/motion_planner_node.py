@@ -112,7 +112,7 @@ class MotionPlanningNode(Node):
                 else:
                     self.steering_command = 0
 
-
+            self.steering_command = convert_steeringangle2command(52,target_slope)
             self.left_speed_command = 100  # 예시 속도 값 (255가 최대 속도)
             self.right_speed_command = 100  # 예시 속도 값 (255가 최대 속도)
 
@@ -136,9 +136,28 @@ def main(args=None):
         rclpy.spin(node)
     except KeyboardInterrupt:
         print("\n\nshutdown\n\n")
+        # 정지 명령 생성
+        stop_command = MotionCommand()
+        stop_command.steering = 0
+        stop_command.left_speed = 0
+        stop_command.right_speed = 0
+        # 정지 명령 발행
+        node.publisher.publish(stop_command)
+        # 로그 출력
+        node.get_logger().info("Emergency Stop: Ctrl+C pressed")
     finally:
         node.destroy_node()
         rclpy.shutdown()
 
 if __name__ == '__main__':
     main()
+
+def convert_steeringangle2command(max_target_angle, target_angle):
+   
+    f = lambda x : 7/(max_target_angle**3)*(x**3) #64000
+    ret_direction = round(f(target_angle))
+ 
+    ret_direction = 7 if ret_direction >= 7 else ret_direction
+    ret_direction = -7 if ret_direction <= -7 else ret_direction
+    #print('angle_control_direction: ', ret_direction)
+    return ret_direction

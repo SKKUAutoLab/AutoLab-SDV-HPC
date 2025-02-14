@@ -1,0 +1,17 @@
+package.xml
+setup.cfg
+setup.py
+../../build/data_collection_pkg/data_collection_pkg.egg-info/PKG-INFO
+../../build/data_collection_pkg/data_collection_pkg.egg-info/SOURCES.txt
+../../build/data_collection_pkg/data_collection_pkg.egg-info/dependency_links.txt
+../../build/data_collection_pkg/data_collection_pkg.egg-info/entry_points.txt
+../../build/data_collection_pkg/data_collection_pkg.egg-info/requires.txt
+../../build/data_collection_pkg/data_collection_pkg.egg-info/top_level.txt
+../../build/data_collection_pkg/data_collection_pkg.egg-info/zip-safe
+data_collection_pkg/__init__.py
+data_collection_pkg/data_collection_func_lib.cpython-310.pyc
+data_collection_pkg/data_collection_node.py
+resource/data_collection_pkg
+test/test_copyright.py
+test/test_flake8.py
+test/test_pep257.py

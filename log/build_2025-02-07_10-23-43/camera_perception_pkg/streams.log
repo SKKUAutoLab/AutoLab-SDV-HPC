@@ -1,0 +1,28 @@
+[1.301s] Invoking command in '/home/sungbhin/hpc/build/camera_perception_pkg': PYTHONPATH=/home/sungbhin/hpc/build/camera_perception_pkg/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/sungbhin/hpc/install/camera_perception_pkg/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --editable --build-directory /home/sungbhin/hpc/build/camera_perception_pkg/build --no-deps symlink_data
+[1.529s] running develop
+[1.673s] running egg_info
+[1.673s] creating camera_perception_pkg.egg-info
+[1.673s] writing camera_perception_pkg.egg-info/PKG-INFO
+[1.673s] writing dependency_links to camera_perception_pkg.egg-info/dependency_links.txt
+[1.674s] writing entry points to camera_perception_pkg.egg-info/entry_points.txt
+[1.674s] writing requirements to camera_perception_pkg.egg-info/requires.txt
+[1.674s] writing top-level names to camera_perception_pkg.egg-info/top_level.txt
+[1.675s] writing manifest file 'camera_perception_pkg.egg-info/SOURCES.txt'
+[1.675s] reading manifest file 'camera_perception_pkg.egg-info/SOURCES.txt'
+[1.675s] writing manifest file 'camera_perception_pkg.egg-info/SOURCES.txt'
+[1.676s] running build_ext
+[1.676s] Creating /home/sungbhin/hpc/install/camera_perception_pkg/lib/python3.10/site-packages/camera-perception-pkg.egg-link (link to .)
+[1.676s] Installing ethernet_image_publisher_node script to /home/sungbhin/hpc/install/camera_perception_pkg/lib/camera_perception_pkg
+[1.677s] Installing image_publisher_node script to /home/sungbhin/hpc/install/camera_perception_pkg/lib/camera_perception_pkg
+[1.677s] Installing lane_info_extractor_node script to /home/sungbhin/hpc/install/camera_perception_pkg/lib/camera_perception_pkg
+[1.677s] Installing traffic_light_detector_node script to /home/sungbhin/hpc/install/camera_perception_pkg/lib/camera_perception_pkg
+[1.677s] Installing yolov8_node script to /home/sungbhin/hpc/install/camera_perception_pkg/lib/camera_perception_pkg
+[1.678s] 
+[1.678s] Installed /home/sungbhin/hpc/build/camera_perception_pkg
+[1.678s] running symlink_data
+[1.678s] creating /home/sungbhin/hpc/install/camera_perception_pkg/share/ament_index
+[1.678s] creating /home/sungbhin/hpc/install/camera_perception_pkg/share/ament_index/resource_index
+[1.678s] creating /home/sungbhin/hpc/install/camera_perception_pkg/share/ament_index/resource_index/packages
+[1.678s] symbolically linking /home/sungbhin/hpc/build/camera_perception_pkg/resource/camera_perception_pkg -> /home/sungbhin/hpc/install/camera_perception_pkg/share/ament_index/resource_index/packages
+[1.679s] symbolically linking /home/sungbhin/hpc/build/camera_perception_pkg/package.xml -> /home/sungbhin/hpc/install/camera_perception_pkg/share/camera_perception_pkg
+[1.760s] Invoked command in '/home/sungbhin/hpc/build/camera_perception_pkg' returned '0': PYTHONPATH=/home/sungbhin/hpc/build/camera_perception_pkg/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/sungbhin/hpc/install/camera_perception_pkg/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --editable --build-directory /home/sungbhin/hpc/build/camera_perception_pkg/build --no-deps symlink_data

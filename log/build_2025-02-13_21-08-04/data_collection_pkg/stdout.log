@@ -1,0 +1,37 @@
+running egg_info
+creating ../../build/data_collection_pkg/data_collection_pkg.egg-info
+writing ../../build/data_collection_pkg/data_collection_pkg.egg-info/PKG-INFO
+writing dependency_links to ../../build/data_collection_pkg/data_collection_pkg.egg-info/dependency_links.txt
+writing entry points to ../../build/data_collection_pkg/data_collection_pkg.egg-info/entry_points.txt
+writing requirements to ../../build/data_collection_pkg/data_collection_pkg.egg-info/requires.txt
+writing top-level names to ../../build/data_collection_pkg/data_collection_pkg.egg-info/top_level.txt
+writing manifest file '../../build/data_collection_pkg/data_collection_pkg.egg-info/SOURCES.txt'
+reading manifest file '../../build/data_collection_pkg/data_collection_pkg.egg-info/SOURCES.txt'
+writing manifest file '../../build/data_collection_pkg/data_collection_pkg.egg-info/SOURCES.txt'
+running build
+running build_py
+creating /home/sungbhin/hpc/build/data_collection_pkg/build
+creating /home/sungbhin/hpc/build/data_collection_pkg/build/lib
+creating /home/sungbhin/hpc/build/data_collection_pkg/build/lib/data_collection_pkg
+copying data_collection_pkg/data_collection_node.py -> /home/sungbhin/hpc/build/data_collection_pkg/build/lib/data_collection_pkg
+copying data_collection_pkg/__init__.py -> /home/sungbhin/hpc/build/data_collection_pkg/build/lib/data_collection_pkg
+running install
+running install_lib
+creating /home/sungbhin/hpc/install/data_collection_pkg/lib/python3.10/site-packages/data_collection_pkg
+copying /home/sungbhin/hpc/build/data_collection_pkg/build/lib/data_collection_pkg/data_collection_node.py -> /home/sungbhin/hpc/install/data_collection_pkg/lib/python3.10/site-packages/data_collection_pkg
+copying /home/sungbhin/hpc/build/data_collection_pkg/build/lib/data_collection_pkg/__init__.py -> /home/sungbhin/hpc/install/data_collection_pkg/lib/python3.10/site-packages/data_collection_pkg
+byte-compiling /home/sungbhin/hpc/install/data_collection_pkg/lib/python3.10/site-packages/data_collection_pkg/data_collection_node.py to data_collection_node.cpython-310.pyc
+byte-compiling /home/sungbhin/hpc/install/data_collection_pkg/lib/python3.10/site-packages/data_collection_pkg/__init__.py to __init__.cpython-310.pyc
+running install_data
+creating /home/sungbhin/hpc/install/data_collection_pkg/share/ament_index
+creating /home/sungbhin/hpc/install/data_collection_pkg/share/ament_index/resource_index
+creating /home/sungbhin/hpc/install/data_collection_pkg/share/ament_index/resource_index/packages
+copying resource/data_collection_pkg -> /home/sungbhin/hpc/install/data_collection_pkg/share/ament_index/resource_index/packages
+copying package.xml -> /home/sungbhin/hpc/install/data_collection_pkg/share/data_collection_pkg
+creating /home/sungbhin/hpc/install/data_collection_pkg/lib/data_collection_pkg
+copying data_collection_pkg/data_collection_func_lib.cpython-310.pyc -> /home/sungbhin/hpc/install/data_collection_pkg/lib/data_collection_pkg
+running install_egg_info
+Copying ../../build/data_collection_pkg/data_collection_pkg.egg-info to /home/sungbhin/hpc/install/data_collection_pkg/lib/python3.10/site-packages/data_collection_pkg-0.0.0-py3.10.egg-info
+running install_scripts
+Installing data_collection_node script to /home/sungbhin/hpc/install/data_collection_pkg/lib/data_collection_pkg
+writing list of installed files to '/home/sungbhin/hpc/build/data_collection_pkg/install.log'

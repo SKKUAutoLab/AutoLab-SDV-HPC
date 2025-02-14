@@ -37,7 +37,7 @@ class DDSImageListener(Node):
             # Optionally republish the decoded image
             decoded_msg = self.bridge.cv2_to_imgmsg(cv_image, encoding='bgr8')
             self.publisher_.publish(decoded_msg)
-            self.get_logger().info(f'Image received and republished: {cv_image.shape[1]}x{cv_image.shape[0]}')
+            # self.get_logger().info(f'Image received and republished: {cv_image.shape[1]}x{cv_image.shape[0]}')
         except Exception as e:
             self.get_logger().error(f'Error processing image: {e}')
 

@@ -33,7 +33,7 @@ def main():
                 left_speed = 0
                 right_speed = 0
                 message = f"s{steering}l{left_speed}r{right_speed}\n"
-                ser.write(message.encode())
+                ser.write(message.encode()) 
                 break
 
             # 현재 제어 값 가져오기
