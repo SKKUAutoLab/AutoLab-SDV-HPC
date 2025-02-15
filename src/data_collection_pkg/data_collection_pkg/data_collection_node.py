@@ -29,10 +29,11 @@ def getch():
     return ch
 
 class DataCollector:
-    def __init__(self, path="./Collected_Datasets", cam_num=0, max_steering=7):
+    def __init__(self, path="./Collected_Datasets", cam_num=0, max_steering=7, capture_interval=0.5):
         self.path = path
         self.cam_num = cam_num
         self.max_steering = max_steering
+        self.capture_interval = capture_interval
         self.reset_values()
         
         # Initialize camera
@@ -49,7 +50,8 @@ class DataCollector:
         self.camera_thread.start()
         
         self.frame = None
-        self.capture_flag = False
+        self.continuous_capture = False
+        self.last_capture_time = 0
 
     def reset_values(self):
         self.steering = 0
@@ -63,8 +65,10 @@ class DataCollector:
         elif key == 'r':  # Reset all values
             self.reset_values()
             print("\nReset all values to zero. Continuing...\n")
-        elif key == 'c':  # Capture image
-            self.capture_flag = True
+        elif key == 'c':  # Toggle continuous capture
+            self.continuous_capture = not self.continuous_capture
+            status = "started" if self.continuous_capture else "stopped"
+            print(f"\nContinuous capture {status}\n")
         elif key == 'a':  # Left
             self.steering = max(-self.max_steering, self.steering - 1)
         elif key == 'd':  # Right
@@ -102,15 +106,22 @@ class DataCollector:
                 text = f"Speed L/R: {self.left_speed}/{self.right_speed}"
                 cv2.putText(info_img, text, (10, 70), cv2.FONT_HERSHEY_SIMPLEX, 
                            0.7, (0, 255, 0), 2)
+                
+                # Add capture status
+                capture_status = "Recording" if self.continuous_capture else "Stopped"
+                cv2.putText(info_img, capture_status, (300, 30), cv2.FONT_HERSHEY_SIMPLEX,
+                           0.7, (0, 0, 255) if self.continuous_capture else (128, 128, 128), 2)
+                
                 cv2.imshow('Control Info', info_img)
                 
-            # Handle capture flag
-            if self.capture_flag and self.frame is not None:
+            # Handle continuous capture
+            current_time = time.time()
+            if self.continuous_capture and (current_time - self.last_capture_time) >= self.capture_interval:
                 timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
                 filename = os.path.join(self.path, f"capture_{timestamp}.jpg")
-                cv2.imwrite(filename, self.frame)  # Save original frame without text
+                cv2.imwrite(filename, self.frame)
                 print(f"\nImage saved: {filename}\n")
-                self.capture_flag = False
+                self.last_capture_time = current_time
                 
             cv2.waitKey(1)
 
@@ -135,6 +146,7 @@ class DataCollectionNode(Node):
         self.DATA_PATH = "./Collected_Datasets"
         self.CAMERA_NUM = 0
         self.MAX_STEERING = 7
+        self.CAPTURE_INTERVAL = 0.5  # Capture interval in seconds
         
         # QoS Profile
         self.qos_profile = QoSProfile(
@@ -155,7 +167,8 @@ class DataCollectionNode(Node):
         self.data_collector = DataCollector(
             path=self.DATA_PATH,
             cam_num=self.CAMERA_NUM,
-            max_steering=self.MAX_STEERING
+            max_steering=self.MAX_STEERING,
+            capture_interval=self.CAPTURE_INTERVAL
         )
         
         # Create timer for regular publishing
@@ -171,7 +184,7 @@ class DataCollectionNode(Node):
         print("W/S: Increase/Decrease speed (including reverse)")
         print("A/D: Turn left/right")
         print("Space: Emergency stop")
-        print("C: Capture current frame")
+        print("C: Toggle continuous capture mode")
         print("R: Reset all values to zero")
         print("Q: Quit\n")
         
@@ -197,13 +210,6 @@ class DataCollectionNode(Node):
         msg.left_speed = control_values['left_speed']
         msg.right_speed = control_values['right_speed']
         self.publisher.publish(msg)
-        
-        # Debug output
-        #self.get_logger().info(
-        #    f"Published: steering={msg.steering}, "
-        #    f"left_speed={msg.left_speed}, "
-        #    f"right_speed={msg.right_speed}"
-        #)
     
     def publish_stop_command(self):
         msg = MotionCommand()
